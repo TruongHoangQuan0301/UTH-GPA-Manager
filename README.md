@@ -68,9 +68,3 @@ Feel free to submit issues and enhancement requests.
 ## License
 
 [MIT License](LICENSE)
-
-## Contact
-
-For support or queries, contact the IT Department:
-- Phone: (028) 3512 0784
-- Email: it@ut.edu.vn
