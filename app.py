@@ -1,22 +1,14 @@
 """
 Main Flask application for GPA Calculator.
 """
-from flask import Flask, render_template, request, jsonify, send_file, flash, redirect, url_for
-from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
+from flask import Flask, render_template, request, jsonify, flash, redirect, url_for
 from api.gpa_routes import gpa_bp
-from werkzeug.security import generate_password_hash, check_password_hash
-from utils.email_utils import validate_student_email, generate_reset_token, send_reset_email
 import sqlite3
 import os
-from datetime import datetime, timedelta
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your-secret-key-here'  # Change this to a secure secret key
-
-# Initialize Flask-Login
-login_manager = LoginManager()
-login_manager.init_app(app)
-login_manager.login_view = 'login'
 
 # Register blueprints
 app.register_blueprint(gpa_bp, url_prefix='/api')
@@ -33,32 +25,14 @@ def init_db():
     conn = sqlite3.connect(db_path)
     c = conn.cursor()
     
-    # Create users table
-    c.execute('''CREATE TABLE IF NOT EXISTS users
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  username TEXT UNIQUE NOT NULL,
-                  password TEXT NOT NULL,
-                  full_name TEXT,
-                  email TEXT UNIQUE)''')
-    
-    # Create password reset tokens table
-    c.execute('''CREATE TABLE IF NOT EXISTS reset_tokens
-                 (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  user_id INTEGER NOT NULL,
-                  token TEXT UNIQUE NOT NULL,
-                  created_at TIMESTAMP NOT NULL,
-                  FOREIGN KEY(user_id) REFERENCES users(id))''')
-    
     # Create grades table
     c.execute('''CREATE TABLE IF NOT EXISTS grades
                  (id INTEGER PRIMARY KEY AUTOINCREMENT,
-                  user_id INTEGER NOT NULL,
                   semester INTEGER NOT NULL,
                   subject TEXT NOT NULL,
                   credits INTEGER NOT NULL,
                   grade_10 REAL NOT NULL,
-                  grade_4 REAL NOT NULL,
-                  FOREIGN KEY(user_id) REFERENCES users(id))''')
+                  grade_4 REAL NOT NULL)''')
     
     # Create a default test user if none exists
     c.execute('SELECT * FROM users WHERE username = ?', ('test',))
@@ -69,28 +43,12 @@ def init_db():
     conn.commit()
     conn.close()
 
-class User(UserMixin):
-    def __init__(self, id, username, password_hash, full_name, email=None):
-        self.id = id
-        self.username = username
-        self.password_hash = password_hash
-        self.full_name = full_name
-        self.email = email
+@app.route('/')
+def index():
+    """Render the main page."""
+    return render_template('index.html')
 
-    @staticmethod
-    def get(user_id):
-        conn = get_db_connection()
-        user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,)).fetchone()
-        conn.close()
-        if user is None:
-            return None
-        return User(
-            user['id'],
-            user['username'],
-            user['password'],
-            user['full_name'],
-            user.get('email')
-        )
+@app.route('/result')
 
 @login_manager.user_loader
 def load_user(user_id):

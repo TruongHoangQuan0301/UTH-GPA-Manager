@@ -26,18 +26,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url_for('index') }}">Trang chủ</a>
                         </li>
-                        {*{% if current_user.is_authenticated %}*}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('result') }}">Kết quả</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="/logout">Đăng xuất</a>
-                            </li>
-                        {% else %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ url_for('login') }}">Đăng nhập</a>
-                            </li>
-                        {% endif %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ url_for('result') }}">Kết quả</a>
+                        </li>
                     </ul>
                 </div>
             </div>

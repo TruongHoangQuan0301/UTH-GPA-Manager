@@ -2,11 +2,10 @@
 Blueprint for GPA calculator API routes.
 """
 
-from flask import Blueprint, jsonify, request, send_file
+from flask import Blueprint, jsonify, request
 import json
 import os
 import sqlite3
-import openpyxl
 from datetime import datetime
 
 gpa_bp = Blueprint('api', __name__)
@@ -43,9 +42,9 @@ def handle_grades():
             c = conn.cursor()
             
             c.execute('''INSERT INTO grades 
-                        (user_id, semester, subject, credits, grade_10, grade_4)
-                        VALUES (?, ?, ?, ?, ?, ?)''',
-                     (1, data['semester'], data['subject'], 
+                        (semester, subject, credits, grade_10, grade_4)
+                        VALUES (?, ?, ?, ?, ?)''',
+                     (data['semester'], data['subject'], 
                       data['credits'], data['grade10'], data['grade4']))
             
             conn.commit()
