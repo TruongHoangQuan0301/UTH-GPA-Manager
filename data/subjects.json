@@ -1,0 +1,219 @@
+{
+    "subjects": [
+        {
+            "id": "CNTT001",
+            "name": "Nhập môn CNTT",
+            "credits": 3
+        },
+        {
+            "id": "TOAN001",
+            "name": "Giải tích 1",
+            "credits": 3
+        },
+        {
+            "id": "TOAN002",
+            "name": "Đại số",
+            "credits": 3
+        },
+        {
+            "id": "PLDC001",
+            "name": "Pháp luật đại cương",
+            "credits": 2
+        },
+        {
+            "id": "MARX001",
+            "name": "Triết học Mác - Lênin",
+            "credits": 3
+        },
+        {
+            "id": "MARX002",
+            "name": "Kinh tế chính trị Mác - Lênin",
+            "credits": 2
+        },
+        {
+            "id": "MARX003",
+            "name": "Chủ nghĩa xã hội khoa học",
+            "credits": 2
+        },
+        {
+            "id": "HCM001",
+            "name": "Tư tưởng Hồ Chí Minh",
+            "credits": 2
+        },
+        {
+            "id": "DANG001",
+            "name": "Lịch sử Đảng Cộng sản Việt Nam",
+            "credits": 2
+        },
+        {
+            "id": "CNTT002",
+            "name": "Kỹ thuật lập trình",
+            "credits": 3
+        },
+        {
+            "id": "CNTT003",
+            "name": "Cấu trúc dữ liệu",
+            "credits": 3
+        },
+        {
+            "id": "CNTT004",
+            "name": "Cấu trúc rời rạc",
+            "credits": 4
+        },
+        {
+            "id": "CNTT005",
+            "name": "Cấu trúc dữ liệu và giải thuật",
+            "credits": 3
+        },
+        {
+            "id": "CNTT006",
+            "name": "Lập trình hướng đối tượng",
+            "credits": 3
+        },
+        {
+            "id": "CNTT007",
+            "name": "Cơ sở dữ liệu",
+            "credits": 3
+        },
+        {
+            "id": "CNTT008",
+            "name": "Thiết kế cơ sở dữ liệu",
+            "credits": 3
+        },
+        {
+            "id": "CNTT009",
+            "name": "Kiến trúc máy tính",
+            "credits": 3
+        },
+        {
+            "id": "CNTT010",
+            "name": "Phân tích thiết kế hệ thống",
+            "credits": 3
+        },
+        {
+            "id": "CNTT011",
+            "name": "Phân tích thiết kế giải thuật",
+            "credits": 3
+        },
+        {
+            "id": "CNTT012",
+            "name": "Mạng máy tính",
+            "credits": 3
+        },
+        {
+            "id": "CNTT013",
+            "name": "Hệ điều hành",
+            "credits": 3
+        },
+        {
+            "id": "CNTT014",
+            "name": "An toàn thông tin",
+            "credits": 3
+        },
+        {
+            "id": "CNTT015",
+            "name": "Công nghệ phần mềm",
+            "credits": 3
+        },
+        {
+            "id": "CNTT016",
+            "name": "Lập trình Web",
+            "credits": 3
+        },
+        {
+            "id": "CNTT017",
+            "name": "Lập trình Java",
+            "credits": 3
+        },
+        {
+            "id": "CNTT018",
+            "name": "Lập trình mạng",
+            "credits": 3
+        },
+        {
+            "id": "CNTT019",
+            "name": "Quản trị mạng",
+            "credits": 3
+        },
+        {
+            "id": "CNTT020",
+            "name": "Luật CNTT",
+            "credits": 2
+        },
+        {
+            "id": "CNTT021",
+            "name": "Tư duy thiết kế & đổi mới sáng tạo",
+            "credits": 2
+        },
+        {
+            "id": "CNTT022",
+            "name": "Internet vạn vật (IoT)",
+            "credits": 3
+        },
+        {
+            "id": "CNTT023",
+            "name": "Điện toán đám mây",
+            "credits": 3
+        },
+        {
+            "id": "CNTT024",
+            "name": "Trí tuệ nhân tạo",
+            "credits": 3
+        },
+        {
+            "id": "CNTT025",
+            "name": "Khai thác dữ liệu",
+            "credits": 3
+        },
+        {
+            "id": "CNTT026",
+            "name": "Thương mại điện tử",
+            "credits": 3
+        },
+        {
+            "id": "CNTT027",
+            "name": "Học kỳ doanh nghiệp",
+            "credits": 12
+        },
+        {
+            "id": "CNTT028",
+            "name": "Khóa luận tốt nghiệp",
+            "credits": 7
+        },
+        {
+            "id": "CNTT029",
+            "name": "Quản trị dự án CNTT",
+            "credits": 3
+        },
+        {
+            "id": "CNTT030",
+            "name": "Kinh tế tuần hoàn và phát triển bền vững",
+            "credits": 2
+        },
+        {
+            "id": "CNTT031",
+            "name": "Phương pháp nghiên cứu khoa học",
+            "credits": 2
+        },
+        {
+            "id": "CNTT032",
+            "name": "Đồ án phần mềm",
+            "credits": 2
+        },
+        {
+            "id": "CNTT033",
+            "name": "Chuyên đề hệ thống giao thông thông minh",
+            "credits": 2
+        },
+        {
+            "id": "CNTT034",
+            "name": "Công nghệ phần mềm nhúng",
+            "credits": 3
+        },
+        {
+            "id": "CNTT035",
+            "name": "Xử lý ảnh và thị giác máy tính",
+            "credits": 3
+        }
+    ]
+}

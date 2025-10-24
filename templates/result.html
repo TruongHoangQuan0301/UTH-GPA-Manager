@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+
+{% block title %}Kết quả GPA - UTH{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h2 class="mb-4">Kết quả học tập</h2>
+        
+        <!-- Thông tin sinh viên -->
+        <div class="card mb-4">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Thông tin sinh viên</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>Họ và tên:</strong></td>
+                                <td>{{ student.full_name }}</td>
+                            </tr>
+                            <tr>
+                                <td><strong>MSSV:</strong></td>
+                                <td>{{ student.student_id }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Tổng kết</h5>
+                        <table class="table table-borderless">
+                            <tr>
+                                <td><strong>GPA toàn khóa:</strong></td>
+                                <td>{{ "%.2f"|format(total_gpa) }}/4.0</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Tổng tín chỉ:</strong></td>
+                                <td>{{ total_credits }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bảng điểm chi tiết -->
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Bảng điểm chi tiết</h5>
+                
+                <!-- Tabs cho từng kỳ -->
+                <ul class="nav nav-tabs" id="gradeTabs" role="tablist">
+                    {% for semester in semesters %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if loop.first %}active{% endif %}" 
+                           id="semester{{ semester }}-tab" 
+                           data-bs-toggle="tab" 
+                           href="#semester{{ semester }}" 
+                           role="tab">
+                            Kỳ {{ semester }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+
+                <!-- Nội dung từng tab -->
+                <div class="tab-content mt-3" id="gradeTabContent">
+                    {% for semester in semesters %}
+                    <div class="tab-pane fade {% if loop.first %}show active{% endif %}" 
+                         id="semester{{ semester }}" 
+                         role="tabpanel">
+                        
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Môn học</th>
+                                    <th>Tín chỉ</th>
+                                    <th>Điểm 10</th>
+                                    <th>Điểm 4</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for grade in grades[semester] %}
+                                <tr>
+                                    <td>{{ grade.subject }}</td>
+                                    <td>{{ grade.credits }}</td>
+                                    <td>{{ "%.1f"|format(grade.grade_10) }}</td>
+                                    <td>{{ "%.1f"|format(grade.grade_4) }}</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+
+                        <div class="alert alert-info">
+                            <strong>GPA Kỳ {{ semester }}:</strong>
+                            {{ "%.2f"|format(semester_gpas[semester]) }}/4.0
+                            ({{ semester_credits[semester] }} tín chỉ)
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút xuất Excel -->
+        <div class="text-center mt-4">
+            <a href="{{ url_for('api.export_excel') }}" class="btn btn-success btn-lg">
+                📤 Xuất bảng điểm Excel
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}

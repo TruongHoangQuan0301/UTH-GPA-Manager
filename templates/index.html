@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+
+{% block title %}Tính GPA - UTH{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12 text-center mb-4">
+        <h1 class="display-4">GPA Manager Pro</h1>
+        <p class="lead">Hệ thống tính điểm GPA cho sinh viên UTH</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8 offset-md-2">
+        <div class="card">
+            <div class="card-header">
+                <ul class="nav nav-tabs card-header-tabs" id="semesterTabs" role="tablist">
+                    {% for i in range(1, 10) %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if i == 1 %}active{% endif %}" 
+                           id="semester-{{ i }}-tab" 
+                           data-bs-toggle="tab" 
+                           href="#semester-{{ i }}" 
+                           role="tab">
+                            Kỳ {{ i }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="tab-content" id="semesterTabContent">
+                    {% for i in range(1, 10) %}
+                    <div class="tab-pane fade {% if i == 1 %}show active{% endif %}" 
+                         id="semester-{{ i }}" 
+                         role="tabpanel">
+                        <!-- Form nhập điểm cho từng kỳ -->
+                        <form class="semester-form" data-semester="{{ i }}">
+                            <div class="mb-3">
+                                <label for="subject-{{ i }}" class="form-label">Môn học</label>
+                                <select class="form-select subject-select" id="subject-{{ i }}" required>
+                                    <option value="">Chọn môn học...</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="credits-{{ i }}" class="form-label">Số tín chỉ</label>
+                                        <input type="number" class="form-control" id="credits-{{ i }}" 
+                                               min="1" max="10" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="grade-{{ i }}" class="form-label">Điểm (thang 10)</label>
+                                        <input type="number" class="form-control" id="grade-{{ i }}" 
+                                               min="0" max="10" step="0.1" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-end">
+                                <button type="submit" class="btn btn-primary">Thêm môn học</button>
+                            </div>
+                        </form>
+
+                        <!-- Bảng điểm của kỳ -->
+                        <div class="mt-4">
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Môn học</th>
+                                        <th>Tín chỉ</th>
+                                        <th>Điểm 10</th>
+                                        <th>Điểm 4</th>
+                                        <th>Thao tác</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="grades-{{ i }}">
+                                    <!-- Dữ liệu điểm sẽ được thêm vào đây bằng JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Kết quả GPA của kỳ -->
+                        <div class="alert alert-info mt-3">
+                            <strong>GPA Kỳ {{ i }}:</strong>
+                            <span id="gpa-{{ i }}">0.00</span>/4.0
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Nút tính GPA toàn khóa và xuất Excel -->
+        <div class="text-center mt-4">
+            <button id="calculateTotalGPA" class="btn btn-primary btn-lg me-3">
+                🧮 Tính GPA Toàn Khóa
+            </button>
+            <button id="exportExcel" class="btn btn-success btn-lg">
+                📤 Xuất Excel
+            </button>
+        </div>
+
+        <!-- Kết quả GPA toàn khóa -->
+        <div id="totalGPAResult" class="alert alert-success mt-4" style="display: none;">
+            <h4 class="alert-heading">Kết quả GPA toàn khóa</h4>
+            <p class="mb-0">GPA: <strong id="totalGPA">0.00</strong>/4.0</p>
+            <p class="mb-0">Tổng số tín chỉ: <strong id="totalCredits">0</strong></p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+<script>
+    // Script riêng cho trang này sẽ được thêm vào đây
+</script>
+{% endblock %}
